@@ -26,6 +26,11 @@ const options = {
             let origin_country = movieDetails.origin_country;   //나라
 
             console.log(movieDetails);
+
+
+            document.getElementById("homeButton").addEventListener("click", function() {
+                window.location.href = "index.html";
+              });
             
 
           })
