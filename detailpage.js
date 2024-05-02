@@ -16,6 +16,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
           const body = document.querySelector('.detailCard');
           //id 체크해서 ~
 
+          
           let id = movieDetails.id;
           let original_title = movieDetails.original_title;
           let overview = movieDetails.overview;
@@ -43,6 +44,14 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
                 </div>
               </div>
             </div>`;
+            
+            console.log(movieDetails);
+
+
+            document.getElementById("homeButton").addEventListener("click", function() {
+                window.location.href = "index.html";
+              });
+              
 
           body.insertAdjacentHTML('beforeend', temp_html);
           
