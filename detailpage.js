@@ -54,6 +54,12 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     const review = document.getElementById('review').value;
     const password = document.getElementById('password').value;
 
+    // 입력값이 비어 있는지 확인
+    if (!person || !review || !password) {
+      alert('이름과 리뷰를 모두 작성해주세요.');
+      return;
+    }
+
     const reviewData = { // reviewData 객체로 세 가지 정보를 저장
         person: person,
         review: review, 
@@ -74,14 +80,15 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
 function displayReviews() { // 로컬 스토리지에 저장된 리뷰를 화면에 표시하는 함수
     const reviews = JSON.parse(localStorage.getItem('movieReviews')) || []; // 로컬 스토리지에서 리뷰를 가져옴
-    const container = document.getElementById('reviewsContainer'); // 리뷰를 표시할 컨테이너 reviwesContainer 생성
+    const container = document.getElementById('scrollContainer'); // 리뷰를 표시할 컨테이너 reviwesContainer 생성
     container.innerHTML = ''; // 컨테이너를 비움
 
     reviews.forEach((review, index) => { // 리뷰를 순회하면서 화면에 표시
         const reviewElement = document.createElement('div'); // 리뷰를 표시할 div 요소 생성
-        reviewElement.innerHTML = `<strong>${review.person}</strong>: ${review.review} <br> 
-        <input type='password' placeholder='비밀번호 입력' id='pwd${index}'> 
-        <button onclick='deleteReview(${index})'>삭제</button>`; // 리뷰 삭제 버튼 생성
+        reviewElement.innerHTML = 
+        `<strong>${review.person}</strong><br> ${review.review} <br> 
+        <input type='password' placeholder='비밀번호' id='pwd${index}' style='display: inline-block;'> 
+        <button class='delbtn' onclick='deleteReview(${index})' style='display: inline-block;'>삭제</button>`; // 리뷰 삭제 버튼 생성
         container.appendChild(reviewElement); // 리뷰를 컨테이너에 추가
     });
 }
@@ -95,8 +102,10 @@ function deleteReview(index) { // 사용자가 입력한 비밀번호를 확인�
         localStorage.setItem('movieReviews', JSON.stringify(reviews)); // 리뷰를 로컬 스토리지에 저장
         displayReviews(); // 리뷰를 다시 표시
         alert('리뷰가 삭제되었습니다.'); // 삭제 완료 메시지
-    } else {
-        alert('비밀번호가 일치하지 않습니다.'); // 경고 메시지
+    } else if(!pwdInput.value){
+        alert('비밀번호를 입력해주세요'); // 경고 메시지
+    } else{
+      alert('비밀번호가 일치하지 않습니다.');
     }
 }
 

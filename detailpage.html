@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상세페이지</title>
     <link href="detailstyle.css" rel="stylesheet" type="text/css" /> <!--주소들-->
     <script src="detailpage.js"></script>
-    
+
 </head>
+
 <body>
-<body>
-    <button class="homeButton" type="button" id="homeButton">Home</button>
-    <div class="detailCard"></div>
-    <form id="reviewForm">
-        <label for="person">작성자:</label>
-        <input type="text" id="person" name="person" required><br><br>
 
-        <label for="review">리뷰:</label>
-        <textarea id="review" name="review" required></textarea><br><br>
+    <body>
+        <button class="homeButton" type="button" id="homeButton">Home</button>
+        <div class="detailCard"></div>
 
-        <label for="password">비밀번호:</label>
-        <input type="password" id="password" name="password" required>
+        <div class="container">
+            <form id="reviewForm">
+                <p class="input1">
+                    <input type="text" id="person" name="person" placeholder="Name" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </p>
+                <p class="input2">
+                    <input id="review" class="form-control mb-3" placeholder="Review"></input>
+                    <button type="button" onclick="submitReview()">등록</button> <!-- 입력 버튼 -->
+                </p>
 
-        <button type="button" onclick="submitReview()">등록</button> <!-- 입력 버튼 -->
-    </form>
-</body>
+            </form>
+
+            <div id="scrollContainer"></div>
+        </div>
+
+    </body>
+
 </html>
