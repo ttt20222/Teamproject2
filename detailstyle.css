@@ -6,12 +6,12 @@
     font-style: normal;
   }
 .detailcontainer{
-    display: flex;
     overflow-y: auto;
-    border: 1px solid black;
+    border: 1px solid #d0d0d0;
     border-radius: 20px;
     width: 1100px;
     margin: auto;
+    display: flex;
     height: 55vh;
     justify-content: center;
     position: fixed;
@@ -45,6 +45,7 @@
     font-size: 20px;
 }
 
+
 .detail-index{
     font-size: 20px;
 }
@@ -59,6 +60,7 @@
     text-align: start;
     font-size: 24px;
 }
+
 .detail-text-release
 {
     font-size: 25px;

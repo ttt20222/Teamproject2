@@ -15,7 +15,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         .then(movieDetails => {
           const body = document.querySelector('.detailCard');
 
-
           let id = movieDetails.id;
           let original_title = movieDetails.original_title;
           let overview = movieDetails.overview;
@@ -41,7 +40,8 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
               <p>Release Date: ${release_date}</p>
               </div>
               <p class="detail-text">${overview}</p>
-              
+             
+
               </div>
             </div>`;
           console.log(movieDetails);
