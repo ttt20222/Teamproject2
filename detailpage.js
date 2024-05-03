@@ -30,40 +30,21 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
           let display = id.toString() === clickedimg ? "block" : "none";
           console.log(id, clickedimg);
           let temp_html = `
-            <div style="display:${display}" class="card" data-id="${id}">
-              <div class="card-body">
-                <h5 class="card-title">${original_title}</h5>
-                <img src="https://image.tmdb.org/t/p/w500/${poster_path}" class="card-img-top" alt="...">
-                <p class="card-text">${overview}</p>
-                <div class="rating">
-                  <div class ="rate1">
-                  ★★★★★
-                  <span class="rating_star" style = "width: ${vote_average * 10}%;">★★★★★</span>
-                  </div>
-                  <p class="vote_average">${vote_average}/10</p>
-                </div>
+            <div style="display:${display}" data-id="${id}">
+            <div class="detailcontainer">
+              <img class="detail-img" src="https://image.tmdb.org/t/p/w500/${poster_path}" class="detail-img" alt="${original_title}">
+              <div class='detail-textContainer'>
+              <h5 class="detail-title">${original_title}</h5>
+              <p class="detail-text">${overview}</p>
               </div>
             </div>`;
-            
             console.log(movieDetails);
-
-
             document.getElementById("homeButton").addEventListener("click", function() {
                 window.location.href = "index.html";
               });
               
 
           body.insertAdjacentHTML('beforeend', temp_html);
-          
-          //로컬 데이터 호출 후 로컬 id와 id가 같을 시 card display style="block"
-          const card = document.querySelector(`.card[data-id="${id}"]`);
-          console.log(id)
-          if(id === clickedimg){
-          card.classList.add('visible');
-          }
-          else{
-            card.classList.remove('visible');
-          }
         })
     });
   })

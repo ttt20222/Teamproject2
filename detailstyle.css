@@ -1,0 +1,37 @@
+.detailcontainer{
+    display: flex;
+    height: 55vh;
+    justify-content: center;
+    background-color: orange;
+}
+.detail-img{
+    max-height: 100%;
+    max-width: 100%;
+    margin: 25px;
+    margin-left: 50px;
+}
+.detail-textContainer{
+    display: flex;
+    background-color: green;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    margin: 25px;
+}
+.detail-title{
+    background-color: aqua;
+    font-size: 27.5px;
+
+}
+.detail-text{
+    display: flex;
+    text-align: start;
+    background-color: antiquewhite;
+    font-size: 25px;
+}
+.homeButton{
+    width: 150px;
+    height: 50px;
+    padding: 10px 20px;
+    font-size: 25px;
+}
