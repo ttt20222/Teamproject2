@@ -21,7 +21,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
           let poster_path = movieDetails.poster_path;
           let vote_average = movieDetails.vote_average;
           let runtime = movieDetails.runtime;   //러닝타임
-          let genres = movieDetails.genres;    //장르
+          let genres = movieDetails.genres.map(genre => genre.name);   //장르
           let release_date = movieDetails.release_date;   //개봉일
           let origin_country = movieDetails.origin_country;   //나라
           const clickedimg = localStorage.getItem('clickedimg');
@@ -36,7 +36,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
               <div class="">
               <h5 class="detail-title">${original_title}</h5>
               <div class="detail-index">
-              <p>${genres[0].name} , ${genres[1].name} / ${origin_country} / ${runtime}minutes</p>
+              <p>${genres} / ${origin_country} / ${runtime}minutes</p>
               <p>Release Date: ${release_date}</p>
               </div>
               <p class="detail-text">${overview}</p>
