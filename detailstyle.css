@@ -35,3 +35,22 @@
     padding: 10px 20px;
     font-size: 25px;
 }
+button {
+    
+    background-color: rgb(250, 0, 0);
+    color: white;
+    padding: 3px 4px;
+    margin: 8px 0; 
+    border-radius: 5px;
+    border: 2px solid rgb(0, 0, 0); 
+    cursor: pointer;  /* 커서 모양 변경 */
+
+}
+
+input[type="password"] { /*삭제 버튼 거리 조절*/
+    margin-right: 10px;
+}
+
+div { /*리뷰 간격 조절*/
+    margin-bottom: 5px;
+}

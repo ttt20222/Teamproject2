@@ -8,9 +8,21 @@
     <script src="detailpage.js"></script>
     
 </head>
-<body class="detailCard">
+<body>
 <body>
     <button class="homeButton" type="button" id="homeButton">Home</button>
-    
+    <div class="detailCard"></div>
+    <form id="reviewForm">
+        <label for="person">작성자:</label>
+        <input type="text" id="person" name="person" required><br><br>
+
+        <label for="review">리뷰:</label>
+        <textarea id="review" name="review" required></textarea><br><br>
+
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" onclick="submitReview()">등록</button> <!-- 입력 버튼 -->
+    </form>
 </body>
 </html>
