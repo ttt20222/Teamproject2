@@ -52,7 +52,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
           body.insertAdjacentHTML('beforeend', temp_html);
           displayReviews();
 
-          
         })
     });
   })
@@ -62,7 +61,12 @@ function submitReview() { // 리뷰를 제출하는 함수
   const person = document.getElementById('person').value;
   const review = document.getElementById('review').value;
   const password = document.getElementById('password').value;
-  const movieId = localStorage.getItem('clickedimg');
+  //const movieId = localStorage.getItem('clickedimg');
+  const urlParams = new URLSearchParams(window.location.search);   //url에서 가져오기
+  const movieId = urlParams.get('movieId');
+
+  console.log(movieId);
+
 
   // 입력값이 비어 있는지 확인
   if (!person || !review || !password) {
@@ -91,7 +95,9 @@ function submitReview() { // 리뷰를 제출하는 함수
 
 function displayReviews() { // 로컬 스토리지에 저장된 리뷰를 화면에 표시하는 함수
   const reviews = JSON.parse(localStorage.getItem('movieReviews')) || []; // 로컬 스토리지에서 리뷰를 가져옴
-  const checkmovieId = localStorage.getItem('clickedimg');
+  //const checkmovieId = localStorage.getItem('clickedimg');
+  const urlParams = new URLSearchParams(window.location.search);   //url에서 가져오기
+  const checkmovieId = urlParams.get('movieId');
 
   const matchedReviews = reviews.filter(review => review.movieId === checkmovieId);
 
@@ -113,12 +119,13 @@ function deleteReview(index) { // 사용자가 입력한 비밀번호를 확인�
   const pwdInput = document.getElementById(`pwd${index}`); // 사용자가 입력한 비밀번호를 가져옴
   const reviews = JSON.parse(localStorage.getItem('movieReviews')) || []; // 로컬 스토리지에서 리뷰를 가져옴
 
-  const checkmovieId = localStorage.getItem('clickedimg');
-  const matchedReviews = reviews.filter(review => review.movieId === checkmovieId);
+  //const checkmovieId = localStorage.getItem('clickedimg');
+  const urlParams = new URLSearchParams(window.location.search);   //url에서 가져오기
+  const checkmovieId = urlParams.get('movieId');
 
-  if (matchedReviews[index].password === pwdInput.value) { // 사용자가 입력한 비밀번호가 일치하면 리뷰를 삭제
-    matchedReviews.splice(index, 1); // 배열에서 해당 인덱스의 리뷰를 삭제
-    localStorage.setItem('movieReviews', JSON.stringify(matchedReviews)); // 리뷰를 로컬 스토리지에 저장
+  if (reviews[index].movieId === checkmovieId && reviews[index].password === pwdInput.value) { // 사용자가 입력한 비밀번호와 movieid가 일치하면 리뷰를 삭제
+    reviews.splice(index, 1); // 배열에서 해당 인덱스의 리뷰를 삭제
+    localStorage.setItem('movieReviews', JSON.stringify(reviews)); // 리뷰를 로컬 스토리지에 저장
     displayReviews(); // 리뷰를 다시 표시
     alert('리뷰가 삭제되었습니다.'); // 삭제 완료 메시지
   } else if (!pwdInput.value) {
