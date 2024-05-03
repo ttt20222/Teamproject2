@@ -6,7 +6,6 @@
     font-style: normal;
   }
 .detailcontainer{
-    
     overflow-y: auto;
     border: 1px solid #d0d0d0;
     border-radius: 20px;
@@ -45,18 +44,23 @@
     margin-top: 25px;
     font-size: 20px;
 }
-.detail-index-release{
+
+
+.detail-index{
     font-size: 20px;
 }
-.detail-title{
-    font-size: 27.5px;
 
+.detail-title{
+    font-size: 30px;
+    height: 10px;
 }
+
 .detail-text{
     display: flex;
     text-align: start;
-    font-size: 25px;
+    font-size: 24px;
 }
+
 .detail-text-release
 {
     font-size: 25px;

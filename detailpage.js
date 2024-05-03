@@ -14,8 +14,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         .then(response => response.json())
         .then(movieDetails => {
           const body = document.querySelector('.detailCard');
-          //id 체크해서 ~
-
 
           let id = movieDetails.id;
           let original_title = movieDetails.original_title;
@@ -35,13 +33,15 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
               <img class="detail-img" src="https://image.tmdb.org/t/p/w500/${poster_path}" class="detail-img" alt="${original_title}">
              </div>
               <div class='detail-textContainer'>
-             <div class="detail-index-title">Movie Title:</div>
               <div class="">
               <h5 class="detail-title">${original_title}</h5>
-              <p></p>
+              <div class="detail-index">
+              <p>${genres[0].name} , ${genres[1].name} / ${origin_country} / ${runtime}minutes</p>
+              <p>Release Date: ${release_date}</p>
+              </div>
               <p class="detail-text">${overview}</p>
-              <div class="detail-index-release">Release Date:</div>
-              <p class="detail-text-release">${release_date}</p>
+             
+
               </div>
             </div>`;
           console.log(movieDetails);
