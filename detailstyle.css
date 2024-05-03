@@ -30,8 +30,76 @@
     font-size: 25px;
 }
 .homeButton{
+    width: 70px;
+    height: 30px;
+    text-align: center; /* 텍스트를 수평 가운데 정렬합니다. */
+    font-size: 15px;
+}
+button {
+    background-color: rgb(250, 0, 0);
+    color: white;
+    height: 30px;
+    padding: 3px 4px;
+    border-radius: 5px;
+    cursor: pointer;  /* 커서 모양 변경 */
+}
+
+.input1{
+    display: flex;
     width: 150px;
-    height: 50px;
-    padding: 10px 20px;
-    font-size: 25px;
+    height: 20px;
+}   
+
+#person {
+    margin-right: 5px;
+}
+
+.input2{
+    display: flex;
+}
+
+#review {
+    width: 250px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 40%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+}
+
+#reviewForm{
+    width: 300px;
+    height: 100px; }
+
+
+#scrollContainer {
+    width: 300px;
+    height: 300px;
+    overflow-y: auto;
+    border: 2px solid #ccc;
+    padding: 10px;
+}
+
+.reviewText{
+    margin-right: 20px;
+}
+
+.delbtn{
+    width: 40px;
+    height: 25px;
+}
+
+input[type="password"] { /*삭제 버튼 거리 조절*/
+    margin-right: 5px;
+}
+
+div { /*리뷰 간격 조절*/
+    margin-bottom: 5px;
 }
