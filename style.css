@@ -27,6 +27,15 @@
     font-weight: bold;
 }
 
+button {
+    background-color: rgb(250, 0, 0);
+    color: white;
+    height: 30px;
+    padding: 3px 4px;
+    border-radius: 5px;
+    cursor: pointer;  /* 커서 모양 변경 */
+}
+
 /*검색창*/
 .col-12 {     
     position: absolute; /* 절대 위치 지정 */
