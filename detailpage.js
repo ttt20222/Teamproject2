@@ -147,6 +147,20 @@ function deleteReview(index) { // 사용자가 입력한 비밀번호를 확인�
   }
 }
 
+
 // window.onload = function () { // 페이지가 로드되면 displayReviews 함수를 실행
 //   displayReviews();  // 로컬 스토리지에 저장된 리뷰를 화면에 표시
 // };
+
+
+function darkMode() {
+  var body = document.body;
+  body.classList.toggle("dark-mode");
+
+  var button = document.getElementById("button");
+  if(button.innerHTML === "Dark Mode") {
+    button.innerHTML = "Light Mode";
+} else {
+    button.innerHTML = "Dark Mode";
+}
+}

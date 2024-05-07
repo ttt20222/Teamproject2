@@ -27,6 +27,15 @@
     font-weight: bold;
 }
 
+button {
+    background-color: rgb(250, 0, 0);
+    color: white;
+    height: 30px;
+    padding: 3px 4px;
+    border-radius: 5px;
+    cursor: pointer;  /* 커서 모양 변경 */
+}
+
 /*검색창*/
 .col-12 {     
     position: absolute; /* 절대 위치 지정 */
@@ -116,4 +125,28 @@ input[type="search"]#value {
     pointer-events: none;
     top: 0; /* 부모 요소에 대해 상단에 위치하도록 설정 */
     z-index: 0; /* 겹치는 요소 중에 가장 아래에 위치하도록 설정 */
+}
+
+
+/* 다크 모드 설정 */
+.dark-mode {
+    background-color: #000000;
+    color: #fff;
+}
+
+.dark-mode .header {
+    background-color: #000000;
+    color: #fff;
+}
+
+.dark-mode .header h1 {
+    color: #fff;
+}
+
+.dark-mode .card {
+    background-color: #000000;
+}
+
+.dark-mode .card-title {
+    color: #ffffff;
 }

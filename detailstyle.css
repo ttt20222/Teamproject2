@@ -145,3 +145,9 @@ input[type="password"] { /*삭제 버튼 거리 조절*/
 div { /*리뷰 간격 조절*/
     margin-bottom: 5px;
 }
+
+/* 다크 모드 설정 */
+.dark-mode {
+    background-color: #000000;
+    color: #fff;
+}
