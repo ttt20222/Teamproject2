@@ -74,6 +74,7 @@
     text-align: center; /* 텍스트를 수평 가운데 정렬합니다. */
     font-size: 15px;
 }
+
 button {
     background-color: rgb(250, 0, 0);
     color: white;

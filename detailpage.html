@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상세페이지</title>
     <link href="detailstyle.css" rel="stylesheet" type="text/css" /> <!--주소들-->
-    <script src="detailpage.js"></script>
 
 </head>
 
@@ -26,14 +25,13 @@
                 </p>
                 <p class="input2">
                     <input id="review" class="form-control mb-3" placeholder="Review"></input>
-                    <button type="button" onclick="submitReview()">등록</button> <!-- 입력 버튼 -->
+                    <button type="button" class="submit" onclick="submitReview()">등록</button> <!-- 입력 버튼 -->
                 </p>
 
             </form>
 
             <div id="scrollContainer"></div>
         </div>
-
     </body>
-
+    <script src="detailpage.js"></script>
 </html>
