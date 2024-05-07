@@ -50,28 +50,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       });
     });
 
-
-
-    // let inputBox = document.querySelector('.form-control');
-
-    // inputBox.addEventListener("keyup", () => {
-
-    //   let value = document.getElementById("value").value.toUpperCase();
-    //   let item = document.querySelectorAll(".card");
-    //   // console.log(value);
-    //   // console.log(item[0]);
-
-    //   for (let i = 0; i < item.length; i++) {
-    //     let name = item[i].getElementsByClassName("card-title");
-    //     if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
-    //       item[i].style.display = "flex";
-    //     } else {
-    //       item[i].style.display = "none";
-    //     }
-    //   }
-
-    // });
-
     
 
     //검색버튼 입력시 동일한 영화제목 보여줌
@@ -103,13 +81,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         }else {
           item[i].style.display = "none";
         }
-
-        // if (name[0].innerHTML.toUpperCase() === value) {
-        //   item[i].style.display = "block";
-        //   console.log(item[i]);
-        // } else {
-        //   item[i].style.display = "none";
-        // }
       }
 
       await new Promise(resolve => setTimeout(resolve, 1000));

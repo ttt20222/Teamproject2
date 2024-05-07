@@ -89,7 +89,6 @@ function submitReview() { // 리뷰를 제출하는 함수
 이름, 리뷰, 패스워드를 모두 작성해주세요.`)
     return;
     case 3: alert('이름, 리뷰, 패스워드를 모두 작성해주세요.');
-    console.log(personBool)
     return;
   }
 
