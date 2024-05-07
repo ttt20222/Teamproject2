@@ -12,6 +12,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     const mainBox = document.querySelector('.main_box');    
 
     response.results.forEach(result => {
+      console.log(result);
       let original_title = result.original_title;
       let overview = result.overview;
       let poster_path = result.poster_path;
@@ -44,8 +45,8 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       card.addEventListener("click", function () {
         const movieId = this.getAttribute('data-id');
         
-      localStorage.setItem('clickedimg', movieId); //id 로컬에 저장
-      window.location.href =`detailpage.html?movieId=${movieId}`;//(주소#1)//id를 url에 저장
+      localStorage.setItem('clickedimg', movieId); //이미지 id 로컬에 저장
+      window.location.href ='detailpage.html';
         // alert(`영화 id : ${movieId}`); //잠시 꺼둠
       });
     });

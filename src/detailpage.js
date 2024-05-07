@@ -26,8 +26,10 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
           let origin_country = movieDetails.origin_country;   //나라
           const clickedimg = localStorage.getItem('clickedimg');
           let display = id.toString() === clickedimg ? "block" : "none";
+
+          
           let temp_html = `
-            <div style="display:${display}" id="movieId" data-id="${id}">
+            <div style="display:${display}" data-id="${id}">
             <div class="detailcontainer">
             <div class ="detail-img-box">
               <img class="detail-img" src="https://image.tmdb.org/t/p/w500/${poster_path}" class="detail-img" alt="${original_title}">
@@ -44,14 +46,13 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
               </div>
             </div>`;
-
+          console.log(movieDetails);
           document.getElementById("homeButton").addEventListener("click", function () {
-            window.location.href = "index.html";
+            window.location.href = "../html/index.html";
           });
 
-          body.insertAdjacentHTML('beforeend', temp_html);
-          displayReviews();
 
+          body.insertAdjacentHTML('beforeend', temp_html);
         })
     });
   })
@@ -61,62 +62,37 @@ function submitReview() { // 리뷰를 제출하는 함수
   const person = document.getElementById('person').value;
   const review = document.getElementById('review').value;
   const password = document.getElementById('password').value;
-  //const movieId = localStorage.getItem('clickedimg');
-  const urlParams = new URLSearchParams(window.location.search);   //url에서 가져오기
-  const movieId = urlParams.get('movieId');
 
-  console.log(movieId);
-
-
-  //validation check
-
-  let passwordCheck = /^[0-9]{4,10}$/.test(password);
-
+  // 입력값이 비어 있는지 확인
   if (!person || !review || !password) {
     alert('이름과 리뷰를 모두 작성해주세요.');
     return;
-  }else if(review.length < 10){
-    alert('리뷰를 10자 이상 작성해주세요.');
-    return;
-  }else if(passwordCheck === false){
-    alert('비밀번호를 4자~10자의 숫자를 사용해주세요');
-    return;
-  }else{
-    const reviewData = { // reviewData 객체로 세 가지 정보를 저장
-      person: person,
-      review: review,
-      password: password,
-      movieId: movieId
-    };
-  
-    let reviews = JSON.parse(localStorage.getItem('movieReviews')) || []; // 데이터 불러오기 - 로컬 스토리지에서 리뷰를 가져옴
-    reviews.push(reviewData);                                             // 새로운 리뷰를 배열에 추가
-  
-    localStorage.setItem('movieReviews', JSON.stringify(reviews)); // 데이터 저장하기 - 리뷰를 로컬 스토리지에 저장 
-    alert('리뷰가 저장되었습니다!');
-    displayReviews(); // 리뷰를 화면에 표시
-  
-  
-  
-    document.getElementById('reviewForm').reset(); // 리뷰를 제출한 후 입력 폼을 초기화
-
   }
 
+  const reviewData = { // reviewData 객체로 세 가지 정보를 저장
+    person: person,
+    review: review,
+    password: password
+  };
 
+  let reviews = JSON.parse(localStorage.getItem('movieReviews')) || []; // 데이터 불러오기 - 로컬 스토리지에서 리뷰를 가져옴
+  reviews.push(reviewData);                                             // 새로운 리뷰를 배열에 추가
+
+  localStorage.setItem('movieReviews', JSON.stringify(reviews)); // 데이터 저장하기 - 리뷰를 로컬 스토리지에 저장 
+  alert('리뷰가 저장되었습니다!');
+  displayReviews(); // 리뷰를 화면에 표시
+
+
+
+  document.getElementById('reviewForm').reset(); // 리뷰를 제출한 후 입력 폼을 초기화
 }
 
 function displayReviews() { // 로컬 스토리지에 저장된 리뷰를 화면에 표시하는 함수
   const reviews = JSON.parse(localStorage.getItem('movieReviews')) || []; // 로컬 스토리지에서 리뷰를 가져옴
-  //const checkmovieId = localStorage.getItem('clickedimg');
-  const urlParams = new URLSearchParams(window.location.search);   //url에서 가져오기
-  const checkmovieId = urlParams.get('movieId');
-
-  const matchedReviews = reviews.filter(review => review.movieId === checkmovieId);
-
   const container = document.getElementById('scrollContainer'); // 리뷰를 표시할 컨테이너 reviwesContainer 생성
   container.innerHTML = ''; // 컨테이너를 비움
 
-  matchedReviews.forEach((review, index) => { // 리뷰를 순회하면서 화면에 표시
+  reviews.forEach((review, index) => { // 리뷰를 순회하면서 화면에 표시
     const reviewElement = document.createElement('div'); // 리뷰를 표시할 div 요소 생성
     reviewElement.innerHTML =
       `<strong>${review.person}</strong><br> ${review.review} <br> 
@@ -126,16 +102,11 @@ function displayReviews() { // 로컬 스토리지에 저장된 리뷰를 화면
   });
 }
 
-
 function deleteReview(index) { // 사용자가 입력한 비밀번호를 확인하고 리뷰를 삭제하는 함수
   const pwdInput = document.getElementById(`pwd${index}`); // 사용자가 입력한 비밀번호를 가져옴
   const reviews = JSON.parse(localStorage.getItem('movieReviews')) || []; // 로컬 스토리지에서 리뷰를 가져옴
 
-  //const checkmovieId = localStorage.getItem('clickedimg');
-  const urlParams = new URLSearchParams(window.location.search);   //url에서 가져오기
-  const checkmovieId = urlParams.get('movieId');
-
-  if (reviews[index].movieId === checkmovieId && reviews[index].password === pwdInput.value) { // 사용자가 입력한 비밀번호와 movieid가 일치하면 리뷰를 삭제
+  if (reviews[index].password === pwdInput.value) { // 사용자가 입력한 비밀번호가 일치하면 리뷰를 삭제
     reviews.splice(index, 1); // 배열에서 해당 인덱스의 리뷰를 삭제
     localStorage.setItem('movieReviews', JSON.stringify(reviews)); // 리뷰를 로컬 스토리지에 저장
     displayReviews(); // 리뷰를 다시 표시
@@ -147,11 +118,9 @@ function deleteReview(index) { // 사용자가 입력한 비밀번호를 확인�
   }
 }
 
-
-// window.onload = function () { // 페이지가 로드되면 displayReviews 함수를 실행
-//   displayReviews();  // 로컬 스토리지에 저장된 리뷰를 화면에 표시
-// };
-
+window.onload = function () { // 페이지가 로드되면 displayReviews 함수를 실행
+  displayReviews();  // 로컬 스토리지에 저장된 리뷰를 화면에 표시
+};
 
 function darkMode() {
   var body = document.body;
