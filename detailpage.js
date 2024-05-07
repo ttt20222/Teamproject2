@@ -68,29 +68,41 @@ function submitReview() { // 리뷰를 제출하는 함수
   console.log(movieId);
 
 
-  // 입력값이 비어 있는지 확인
+  //validation check
+
+  let passwordCheck = /^[0-9]{4,10}$/.test(password);
+
   if (!person || !review || !password) {
     alert('이름과 리뷰를 모두 작성해주세요.');
     return;
+  }else if(review.length < 10){
+    alert('리뷰를 10자 이상 작성해주세요.');
+    return;
+  }else if(passwordCheck === false){
+    alert('비밀번호를 4자~10자의 숫자를 사용해주세요');
+    return;
+  }else{
+    const reviewData = { // reviewData 객체로 세 가지 정보를 저장
+      person: person,
+      review: review,
+      password: password,
+      movieId: movieId
+    };
+  
+    let reviews = JSON.parse(localStorage.getItem('movieReviews')) || []; // 데이터 불러오기 - 로컬 스토리지에서 리뷰를 가져옴
+    reviews.push(reviewData);                                             // 새로운 리뷰를 배열에 추가
+  
+    localStorage.setItem('movieReviews', JSON.stringify(reviews)); // 데이터 저장하기 - 리뷰를 로컬 스토리지에 저장 
+    alert('리뷰가 저장되었습니다!');
+    displayReviews(); // 리뷰를 화면에 표시
+  
+  
+  
+    document.getElementById('reviewForm').reset(); // 리뷰를 제출한 후 입력 폼을 초기화
+
   }
 
-  const reviewData = { // reviewData 객체로 세 가지 정보를 저장
-    person: person,
-    review: review,
-    password: password,
-    movieId: movieId
-  };
 
-  let reviews = JSON.parse(localStorage.getItem('movieReviews')) || []; // 데이터 불러오기 - 로컬 스토리지에서 리뷰를 가져옴
-  reviews.push(reviewData);                                             // 새로운 리뷰를 배열에 추가
-
-  localStorage.setItem('movieReviews', JSON.stringify(reviews)); // 데이터 저장하기 - 리뷰를 로컬 스토리지에 저장 
-  alert('리뷰가 저장되었습니다!');
-  displayReviews(); // 리뷰를 화면에 표시
-
-
-
-  document.getElementById('reviewForm').reset(); // 리뷰를 제출한 후 입력 폼을 초기화
 }
 
 function displayReviews() { // 로컬 스토리지에 저장된 리뷰를 화면에 표시하는 함수
