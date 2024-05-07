@@ -82,11 +82,13 @@ function submitReview() { // 리뷰를 제출하는 함수
   switch(inputCounter){
     case 0: 
     break;
-    case 1: alert('이름, 리뷰, 패스워드 중 2가지만 입력되었습니다.')
+    case 1: alert(`이름, 리뷰, 패스워드 중 2가지만 입력되었습니다.
+이름, 리뷰, 패스워드를 모두 작성해주세요.`)
     return;
-    case 2: alert('이름, 리뷰, 패스워드 중 1가지만 입력되었습니다.')
+    case 2: alert(`이름, 리뷰, 패스워드 중 1가지만 입력되었습니다.
+    이름, 리뷰, 패스워드를 모두 작성해주세요.`)
     return;
-    case 3: alert('이름과 리뷰를 모두 작성해주세요.');
+    case 3: alert('이름, 리뷰, 패스워드를 모두 작성해주세요.');
     console.log(personBool)
     return;
   }
