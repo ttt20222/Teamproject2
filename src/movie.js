@@ -12,7 +12,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     const mainBox = document.querySelector('.main_box');    
 
     response.results.forEach(result => {
-      console.log(result);
       let original_title = result.original_title;
       let overview = result.overview;
       let poster_path = result.poster_path;
@@ -45,8 +44,8 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       card.addEventListener("click", function () {
         const movieId = this.getAttribute('data-id');
         
-      localStorage.setItem('clickedimg', movieId); //이미지 id 로컬에 저장
-      window.location.href ='detailpage.html';
+      localStorage.setItem('clickedimg', movieId); //id 로컬에 저장
+      window.location.href =`detailpage.html?movieId=${movieId}`;//(주소#1)//id를 url에 저장
         // alert(`영화 id : ${movieId}`); //잠시 꺼둠
       });
     });
@@ -82,11 +81,12 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       let item = document.querySelectorAll(".card");
 
       // 검색어가 비어있는 경우 모든 카드를 보여줌
-      if (value === "") {
+      while(value === "") {
         item.forEach(item => {
           item.style.display = "block";
         });
-        return; // 검색어가 없으면 이후 코드 실행 안 함
+        if(value !== null){
+        return; }// 검색어가 없으면 이후 코드 실행 안 함
       }
 
       let searchCount = 0;
@@ -134,10 +134,10 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
   /* 다크 모드 설정 */
 
   function darkMode() {
-    var body = document.body;
+    const body = document.body;
     body.classList.toggle("dark-mode");
 
-    var button = document.getElementById("button");
+    const button = document.getElementById("button");
     if(button.innerHTML === "Dark Mode") {
       button.innerHTML = "Light Mode";
   } else {
