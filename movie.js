@@ -162,3 +162,17 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
   })
   .catch(err => console.error(err));
+
+  /* 다크 모드 설정 */
+
+  function darkMode() {
+    var body = document.body;
+    body.classList.toggle("dark-mode");
+
+    var button = document.getElementById("button");
+    if(button.innerHTML === "Dark Mode") {
+      button.innerHTML = "Light Mode";
+  } else {
+      button.innerHTML = "Dark Mode";
+  }
+}
