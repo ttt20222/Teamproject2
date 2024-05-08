@@ -71,11 +71,26 @@ function submitReview() { // 리뷰를 제출하는 함수
   //validation check
 
   let passwordCheck = /^[0-9]{4,10}$/.test(password);
-
-  if (!person || !review || !password) {
-    alert('이름과 리뷰를 모두 작성해주세요.');
+  
+  //요구사항, 형변환 사용
+  const personBool = Number(!person);
+  const reviewBool = Number(!review);
+  const passwordBool = Number(!password);
+  const inputCounter = personBool + reviewBool+ passwordBool;
+ 
+  //요구사항, 스위치 쓰기
+  switch(inputCounter){
+    case 0: 
+    break;
+    case 1: alert('이름, 리뷰, 패스워드 중 2가지만 입력되었습니다.')
     return;
-  }else if(review.length < 10){
+    case 2: alert('이름, 리뷰, 패스워드 중 1가지만 입력되었습니다.')
+    return;
+    case 3: alert('이름과 리뷰를 모두 작성해주세요.');
+    return;
+  }
+
+  if(review.length < 10){
     alert('리뷰를 10자 이상 작성해주세요.');
     return;
   }else if(passwordCheck === false){
@@ -154,10 +169,10 @@ function deleteReview(index) { // 사용자가 입력한 비밀번호를 확인�
 
 
 function darkMode() {
-  var body = document.body;
+  const body = document.body;
   body.classList.toggle("dark-mode");
 
-  var button = document.getElementById("button");
+  const button = document.getElementById("button");
   if(button.innerHTML === "Dark Mode") {
     button.innerHTML = "Light Mode";
 } else {
