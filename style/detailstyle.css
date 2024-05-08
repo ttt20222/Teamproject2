@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+* {
+    font-family: "Do Hyeon", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+.detailcontainer{
+    overflow-y: auto;
+    border: 1px solid #d0d0d0;
+    border-radius: 20px;
+    width: 1100px;
+    margin: auto;
+    display: flex;
+    height: 55vh;
+    justify-content: center;
+    position: fixed;
+    top: 45%;
+    left: 41%;
+    transform: translate(-50%, -50%);
+}
+.detail-movie-card{
+    display:flex;
+}
+.detail-img-box{
+    width: 1280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.detail-img{
+    max-height: 80%;
+    max-width: 80%;
+}
+
+.detail-textContainer{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    margin: 25px;
+}
+.detail-index-title{
+    margin-top: 25px;
+    font-size: 20px;
+}
+
+
+.detail-index{
+    font-size: 20px;
+}
+
+.detail-title{
+    font-size: 30px;
+    height: 10px;
+}
+
+.detail-text{
+    display: flex;
+    text-align: start;
+    font-size: 24px;
+}
+
+.detail-text-release
+{
+    font-size: 25px;
+}
+
+/*버튼 스타일*/
+
+.homeButton{
+    width: 70px;
+    height: 30px;
+    text-align: center; /* 텍스트를 수평 가운데 정렬합니다. */
+    font-size: 15px;
+}
+
+button {
+    background-color: rgb(250, 0, 0);
+    color: white;
+    height: 30px;
+    padding: 3px 4px;
+    border-radius: 5px;
+    cursor: pointer;  /* 커서 모양 변경 */
+}
+
+
+.input1{
+    display: flex;
+    width: 150px;
+    height: 20px;
+}   
+
+#person {
+    margin-right: 5px;
+}
+
+.input2{
+    display: flex;
+}
+
+#review {
+    width: 250px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 43%;
+    left: 82%;
+    transform: translate(-50%, -50%);
+}
+
+#reviewForm{
+    width: 300px;
+    height: 100px; }
+
+
+#scrollContainer {
+    width: 300px;
+    height: 300px;
+    overflow-y: auto;
+    border: 2px solid #ccc;
+    padding: 10px;
+}
+
+.reviewText{
+    margin-right: 20px;
+}
+
+.delbtn{
+    width: 40px;
+    height: 25px;
+}
+/*주의!모든 input + div에 접근*/
+
+input[type="password"] { /*삭제 버튼 거리 조절*/
+    margin-right: 5px;
+}
+
+div { /*리뷰 간격 조절*/
+    margin-bottom: 5px;
+}
+
+/* 다크 모드 설정 */
+.dark-mode {
+    background-color: #000000;
+    color: #fff;
+}
