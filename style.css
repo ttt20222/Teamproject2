@@ -117,3 +117,8 @@ input[type="search"]#value {
     top: 0; /* 부모 요소에 대해 상단에 위치하도록 설정 */
     z-index: 0; /* 겹치는 요소 중에 가장 아래에 위치하도록 설정 */
 }
+
+#sortBtn {
+    display: flex; /* 부모 요소를 Flexbox로 설정 */
+    margin-left: 95%;
+}
