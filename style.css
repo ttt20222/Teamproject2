@@ -1,113 +1,158 @@
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
 * {
-    font-family: "Do Hyeon", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-
-body {
-    background-color: white;
+    font-family: 'Gowun Dodum', sans-serif;
 }
-
+  
 /*메인헤더*/
 .header {       
-    color: #0d4c89;
+    color: #000000;
     position: relative;
     height: 170px;
     top: 0;
     left: 0;
     right: 0;
-    background-color: #ccced0;
+    background-color: #ffffff;
     padding: 20px;
 }
 
 .header h1 {
-    font-size: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
     text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
 }
 
-.header p {
-    font-size: 20px;
-    text-align: center;
+button {
+    background-color: rgb(250, 0, 0);
+    color: white;
+    height: 30px;
+    padding: 3px 4px;
+    border-radius: 5px;
+    cursor: pointer;  /* 커서 모양 변경 */
 }
 
-.col-12 {     /*검색창*/
+/*검색창*/
+.col-12 {     
     position: absolute; /* 절대 위치 지정 */
     top: 115px; 
     left: 39%;
-    width: 250px;
+    width: 340px;
+    margin-top: 20px;
     /* transform: translateX(-50%); */
 }
 
-.text-end {    /*검색버튼*/
+/*검색버튼*/
+.text-end {    
     position: absolute; /* 절대 위치 지정 */
     top: 115px; 
     left: 57%;
+    margin-top: 20px;
     /* transform: translateX(-50%); */
 }
 
+/* 검색창 내 take your pick 가운대로 */
+input[type="search"]#value {
+    text-align: center;   
+}
 
 /*메인박스 (큰박스)*/
 .main_box {
-    background-color: #e9eaec;
-    color : black;
+    background-color: #ffffff00;
+    color : rgb(0, 0, 0);
     position: relative;
     height: auto;
-    margin: 0 auto;
+    margin: 20px auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3개의 열로 구성된 그리드 생성 */
-    gap: 10px; /* 각 카드 사이의 간격 설정 */
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 100px; /* 각 카드 사이의 간격 설정 */
     justify-content: center; /* 가로 중앙 정렬 */
 }
 
 .card {
-    width: 80%;
+    width: 90%;
     max-width: 300px;
-    height: auto;
-    margin: 20px auto 0; 
+    height: 370px;
+    margin: 30px auto 0; 
+    cursor: pointer;  /* 커서 모양 변경 */
+    border-radius: 10px; /* 카드 모서리를 둥글게 만들기 */  
   }
+
+  /* 카드에 마우스를 올렸을 때 디자인 변경*/
+.card:hover {
+    transform: scale(1.1);
+    background-color: rgb(243, 238, 238);
+    transition-duration: 0.3s;
+	transition-delay: 0s;
+    transition-timing-function: ease;
+}
 
 
 .card-title {
     text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 7px;
 }
 
-.card-text {
-    margin-top : 10px;
-}
 
-.rating {
-width: 250x;
-display: flex; /* 요소들을 가로로 배치하기 위해 Flexbox 사용 */
-justify-items: center; /* 요소들을 세로 중앙 정렬 */
+.rating { 
+    width: 250px;
+    display: flex; /* 요소들을 가로로 배치하기 위해 Flexbox 사용 */
+    justify-items: center; /* 요소들을 세로 중앙 정렬 */
 }
   
 
-.rate1 {
-position: relative;
-color: #ddd;
-font-size: 30px;
-text-align: center;
-z-index: 1; /
-}
-
-.rating_star {
-color: #0d4c89;
-position: absolute;
-display: flex;
-left: 0;
-right: 0;
-overflow: hidden;
-pointer-events: none;
-top: 0; /* 부모 요소에 대해 상단에 위치하도록 설정 */
-z-index: 0; /* 겹치는 요소 중에 가장 아래에 위치하도록 설정 */
-}
- 
-.vote_average{
-    margin: 10px;
-    margin-bottom: 5px;
+.rate1 { /* 별점 */
+    position: relative;
+    color: #ddd;
+    font-size: 30px;
     text-align: center;
- }
+    z-index: 1; /
+}
 
+.rating_star { /* 별점 */
+    color: #ff0303;
+    position: absolute;
+    display: flex;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    pointer-events: none;
+    top: 0; /* 부모 요소에 대해 상단에 위치하도록 설정 */
+    z-index: 0; /* 겹치는 요소 중에 가장 아래에 위치하도록 설정 */
+}
+
+
+#sortBtn {
+    display: flex; /* 부모 요소를 Flexbox로 설정 */
+    margin-left: 95%;
+}
+
+
+/* 다크 모드 설정 */
+.dark-mode {
+    background-color: #000000;
+    color: #fff;
+}
+
+.dark-mode .header {
+    background-color: #000000;
+    color: #fff;
+}
+
+.dark-mode .header h1 {
+    color: #fff;
+}
+
+.dark-mode .card {
+    background-color: #000000;
+}
+
+.dark-mode .card-title {
+    color: #ffffff;
+}

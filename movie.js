@@ -9,45 +9,77 @@ const options = {
 fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)     //api 정보 불러오기
   .then((response) => response.json())
   .then((response) => {
-    const mainBox = document.querySelector('.main_box');    
+    const mainBox = document.querySelector('.main_box');
 
-    response.results.forEach(result => {
-      let original_title = result.original_title;
-      let overview = result.overview;
-      let poster_path = result.poster_path;
-      let vote_average = result.vote_average;
-      let id = result.id;
+    function displayMovies(results) {
+      mainBox.innerHTML = "";
+      results.forEach(result => {
+        let original_title = result.original_title;
+        let overview = result.overview;
+        let poster_path = result.poster_path;
+        let vote_average = result.vote_average;
+        let id = result.id;
 
-      let temp_html = `
+        let temp_html = `
         <div class="card" data-id="${id}">
           <div class="card-body">
             <h5 class="card-title">${original_title}</h5>
             <img src="https://image.tmdb.org/t/p/w500/${poster_path}" class="card-img-top" alt="...">
-            <p class="card-text">${overview}</p>
             <div class="rating">
               <div class ="rate1">
               ★★★★★
               <span class="rating_star" style = "width: ${vote_average * 10}%;">★★★★★</span>
               </div>
-              <p class="vote_average">${vote_average}/10</p>
             </div>
           </div>
         </div>`;
 
-      mainBox.insertAdjacentHTML('beforeend', temp_html);
+        mainBox.insertAdjacentHTML('beforeend', temp_html);
 
-    });
-
-    // 모든 .card 요소를 선택
-    const cards = document.querySelectorAll(".card");
-
-    // 각각의 .card 요소에 대해 클릭 이벤트 리스너 추가
-    cards.forEach(card => {
-      card.addEventListener("click", function () {
-        const movieId = this.getAttribute('data-id');
-        alert(`영화 id : ${movieId}`);
       });
-    });
+    }
+
+    displayMovies(response.results); //초기 영화 목록
+    clickEvent();
+
+    function sortByTitle() {
+      let sortedResults = [...response.results];
+      sortedResults.sort((a, b) => {
+        if (a.original_title < b.original_title) return -1;
+        if (a.original_title > b.original_title) return 1;
+        return 0;
+      });
+      displayMovies(sortedResults); // 정렬 후 다시 화면에 표시
+      clickEvent();
+    }
+
+    function sortByRating() {
+      let sortedResults = [...response.results]; 
+      sortedResults.sort((a,b) => {
+        return b.vote_average - a.vote_average;
+      });
+      displayMovies(sortedResults);
+      clickEvent();
+    }
+
+    document.getElementById("sortByTitle").addEventListener("click", sortByTitle);
+    document.getElementById("sortByRating").addEventListener("click", sortByRating);
+
+    function clickEvent() {
+      // 모든 .card 요소를 선택
+      const cards = document.querySelectorAll(".card");
+
+      // 각각의 .card 요소에 대해 클릭 이벤트 리스너 추가
+      cards.forEach(card => {
+        card.addEventListener("click", function () {
+          const movieId = this.getAttribute('data-id');
+
+          localStorage.setItem('clickedimg', movieId); //id 로컬에 저장
+          window.location.href = `detailpage.html?movieId=${movieId}`;//(주소#1)//id를 url에 저장
+          // alert(`영화 id : ${movieId}`); //잠시 꺼둠
+        });
+      });
+    }
 
 
 
@@ -71,7 +103,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
     // });
 
-    
+
 
     //검색버튼 입력시 동일한 영화제목 보여줌
 
@@ -80,11 +112,12 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       let item = document.querySelectorAll(".card");
 
       // 검색어가 비어있는 경우 모든 카드를 보여줌
-      if (value === "") {
+      while(value === "") {
         item.forEach(item => {
           item.style.display = "block";
         });
-        return; // 검색어가 없으면 이후 코드 실행 안 함
+        if(value !== null){
+        return; }// 검색어가 없으면 이후 코드 실행 안 함
       }
 
       let searchCount = 0;
@@ -94,11 +127,11 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
         let findTitle = Array.from(name).find(title => title.innerHTML.toUpperCase() === value);
 
-        if(findTitle || name[0].innerHTML.toUpperCase().indexOf(value) > -1){
+        if (findTitle || name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
           item[i].style.display = "block";
           // console.log(item[i]);
           searchCount++;
-        }else {
+        } else {
           item[i].style.display = "none";
         }
 
@@ -126,8 +159,20 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       }
     });
 
+
+
   })
   .catch(err => console.error(err));
 
+  /* 다크 모드 설정 */
 
+  function darkMode() {
+    const body = document.body;
+    body.classList.toggle("dark-mode");
 
+    const button = document.getElementById("button");
+    if(button.innerHTML === "Dark Mode") {
+      button.innerHTML = "Light Mode";
+  } else {
+      button.innerHTML = "Dark Mode";
+  }}
