@@ -150,8 +150,11 @@ function deleteReview(index) { // 사용자가 입력한 비밀번호를 확인�
   const urlParams = new URLSearchParams(window.location.search);   //url에서 가져오기
   const checkmovieId = urlParams.get('movieId');
 
-  if (reviews[index].movieId === checkmovieId && reviews[index].password === pwdInput.value) { // 사용자가 입력한 비밀번호와 movieid가 일치하면 리뷰를 삭제
-    reviews.splice(index, 1); // 배열에서 해당 인덱스의 리뷰를 삭제
+  const matchedReviewIndex = reviews.findIndex(review => review.movieId == checkmovieId && review.password == pwdInput.value);
+  console.log(matchedReviewIndex);
+
+  if (matchedReviewIndex !== -1) { // 일치하는 리뷰가 있는 경우
+    reviews.splice(matchedReviewIndex, 1); // 배열에서 해당 인덱스의 리뷰를 삭제
     localStorage.setItem('movieReviews', JSON.stringify(reviews)); // 리뷰를 로컬 스토리지에 저장
     displayReviews(); // 리뷰를 다시 표시
     alert('리뷰가 삭제되었습니다.'); // 삭제 완료 메시지
@@ -172,10 +175,19 @@ function darkMode() {
   const body = document.body;
   body.classList.toggle("dark-mode");
 
-  const button = document.getElementById("button");
-  if(button.innerHTML === "Dark Mode") {
+  if (body.classList.contains("dark-mode")) {
     button.innerHTML = "Light Mode";
-} else {
+    localStorage.setItem("darkMode", "enabled");  // 로컬 스토리지에 다크 모드 활성화 저장
+  } else {
     button.innerHTML = "Dark Mode";
+    localStorage.removeItem("darkMode");  // 로컬 스토리지에서 다크 모드 항목 제거
+  }
 }
-}
+
+// 페이지 로드 시 로컬 스토리지 상태 확인 및 적용
+window.onload = function() {
+  if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+    document.getElementById("button").innerHTML = "Light Mode";
+  }
+};
