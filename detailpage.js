@@ -172,10 +172,19 @@ function darkMode() {
   const body = document.body;
   body.classList.toggle("dark-mode");
 
-  const button = document.getElementById("button");
-  if(button.innerHTML === "Dark Mode") {
+  if (body.classList.contains("dark-mode")) {
     button.innerHTML = "Light Mode";
-} else {
+    localStorage.setItem("darkMode", "enabled");  // 로컬 스토리지에 다크 모드 활성화 저장
+  } else {
     button.innerHTML = "Dark Mode";
+    localStorage.removeItem("darkMode");  // 로컬 스토리지에서 다크 모드 항목 제거
+  }
 }
-}
+
+// 페이지 로드 시 로컬 스토리지 상태 확인 및 적용
+window.onload = function() {
+  if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+    document.getElementById("button").innerHTML = "Light Mode";
+  }
+};
